@@ -27,9 +27,24 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+default_origins = [
+    'https://vaibhav-7043.github.io',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+
+if settings.EXTRA_ALLOWED_ORIGINS:
+    extra = [o.strip() for o in settings.EXTRA_ALLOWED_ORIGINS.split(',') if o.strip()]
+    default_origins.extend(extra)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],
+    allow_origins=default_origins,
+    allow_origin_regex=r'https://.*\.github\.io|https://.*\.onrender\.com',
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*'],

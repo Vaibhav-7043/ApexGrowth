@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     
     # Security / Auth Settings
     JWT_SECRET: str = 'apexgrowth_secure_auth_secret_key_2026_razorpay_buildathon'
+    EXTRA_ALLOWED_ORIGINS: str | None = None
 
     # Policy Hard Defaults
     MAX_DISCOUNT_PERCENT: float = Field(default=20.0, description='Max allowed discount percentage')

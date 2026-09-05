@@ -1,4 +1,4 @@
-﻿import {
+import {
   HealthStatus,
   Merchant,
   AnalyticsOverview,
@@ -18,7 +18,8 @@
   OnboardingStatus
 } from '../types';
 
-const API_BASE = '/api';
+const rawApiBase = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE = rawApiBase ? `${rawApiBase.replace(/\/+$/, '')}/api` : '/api';
 
 function getAuthHeader(): Record<string, string> {
   const token = localStorage.getItem('apexgrowth_token');

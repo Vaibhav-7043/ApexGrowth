@@ -1,4 +1,4 @@
-﻿name: Deploy React App to GitHub Pages
+name: Deploy React App to GitHub Pages
 
 on:
   push:
@@ -37,6 +37,8 @@ jobs:
       - name: Build React application
         working-directory: frontend
         run: npm run build
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
 
       - name: Verify build output
         working-directory: frontend
